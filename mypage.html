@@ -1,411 +1,173 @@
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dukkun - 마이페이지</title>
+  <link rel="stylesheet" href="css/mypage.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
 
-:root {
-  --brown: #9F8461;
-  --gold:  #FFAA00;
-  --gray:  #787878;
-  --beige: #E2DAD0;
-  --border: #E0DADA;
-  --grayer: #757575;
-}
+  
+  <header class="header">
+    <a href="#" class="logo">dukkun</a>
+    <nav class="nav">
+      <a href="#" class="nav-link">홈</a>
+      <a href="#" class="nav-link">덕꾼 임무 목록</a>
+      <a href="#" class="nav-link active">마이페이지</a>
+    </nav>
+  </header>
 
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  background: #f5f5f5;
-  color: #222;
-  font-size: 14px;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* HEADER */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 48px;
-  height: 56px;
-}
-
-.logo {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--brown);
-  text-decoration: none;
-  letter-spacing: -1px;
-}
-
-.nav { display: flex; gap: 40px; }
-
-.nav-link {
-  font-size: 14px;
-  color: #444;
-  text-decoration: none;
-}
-.nav-link.active { font-weight: 400; color: #222; }
-
-/* MAIN */
-.main {
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 32px 48px 60px;
-}
-
-.page-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 28px;
-}
-
-/* LAYOUT */
-.layout {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 40px;
-  align-items: start;
-}
-
-/* SIDEBAR */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sidebar-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--brown);
-  margin-bottom: 16px;
-}
-
-.avatar-wrap { margin-bottom: 12px; }
-
-.avatar {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #000;
-  display: block;
-}
-
-/* 덕새 */
-.role-txt {
-  font-size: 14px;
-  color: #222;
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-.points-txt {
-  font-size: 22px;
-  font-weight: 800;
-  color: #000;
-  margin-bottom: 10px;
-}
-
-.btn-charge {
-  background: var(--brown);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 7px 22px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
-  margin-bottom: 10px;
-  min-width: 130;
-}
-.btn-charge:hover { background: #8a7050; }
-
-/* 포인트 내역보기 */
-.history-link {
-  font-size: 14px;
-  color: #757575;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* CONTENT */
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;;
-}
-
-/* 내가 등록한 */
-.section-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #9F8461;
-  margin-bottom: 12px;
-  padding-left: 44px;
-}
-
-/* PAGER */
-.pager {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.arrow {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  background: none;
-  border: none;
-  font-size: 80px;
-  color: #9F8461;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  padding: 0 0 2px 0;
-  border-radius: 50%;
-  transition: color .15s;
-}
-.arrow:hover:not(:disabled) { color: #888; }
-.arrow:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
-
-.viewport {
-  flex: 1;
-  overflow: hidden;
-}
-
-.track {
-  display: flex;
-  transition: transform .3s cubic-bezier(.4,0,.2,1);
-}
-
-/* PAGE = 3 cards stacked */
-.page {
-  flex-shrink: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-
-.card {
-  border: 1px solid #bbb;
-  border-radius: 14px;
-  padding: 16px 20px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: #fff;
-}
-
-.card-empty {
-  background: #fafafa;
-  border-style: dashed;
-  border-color: #eee;
-  justify-content: center;
-  align-items: center;
-  min-height: 80px;
-}
-
-.empty-txt {
-  font-size: 12px;
-  color: #ccc;
-}
-
-/* BADGE */
-.badge {
-  align-self: auto;
-  width: 7%;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--gold);
-  text-decoration: none;
-  border-bottom: 2px solid var(--gold);
-  padding-bottom: 2px;
-  text-underline-offset: 2px;
-  align-self: flex-start;
-}
-
-.card-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #000;
-  line-height: 1.5;
-}
-
-.card-foot {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.btn {
-  padding: 7px 14px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  font-family: 'Noto Sans KR', sans-serif;
-  cursor: pointer;
-  border: none;
-  min-width: 130px;
-}
-
-.btn-brown { background: var(--brown); color: #fff; }
-.btn-brown:hover { background: #8a7050; }
-
-.btn-gray { background: #b8b8b8; color: #fff; }
-.btn-gray:hover:not(:disabled) { background: #a8a8a8; }
-.btn-gray:disabled { background: var(--gray); cursor: default; }
-
-
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 7px;
-  margin-top: 12px;
-  padding-left: 44px; 
-  padding-right: 44px;
-}
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: transparent;
-  border: 1.5px solid #9F8461;
-  cursor: pointer;
-  transition: background .15s;
-}
-.dot.active { 
-  background: var(--brown);
-  border-color: var(--brown);
- }
-
- footer {
-  background: #5d5448;
-  padding: 60px 40px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  font-size: 14px;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.footer-logo img {
-  height: 30px;
  
-}
-.footer-logo {
-  margin-bottom: 15px;
-}
-.footer-content p {
-  margin-bottom: 5px;
-  color: #cccccc;
-}
+  <main class="main">
+    <h1 class="page-title">마이페이지</h1>
 
-.footer-links {
-  display: flex;
-  gap: 20px;
-}
+    <div class="layout">
 
-.footer-links a {
-  color: #cccccc;
-  text-decoration: none;
-}
+      <aside class="sidebar">
+        <p class="sidebar-label">프로필</p>
+        <div class="avatar-wrap">
+          <img src="/images/duksae.png" alt="프로필" class="avatar" />
+        </div>
+        <p class="role-txt">덕새</p>
+        <p class="points-txt">1200P</p>
+        <button class="btn-charge">포인트 충전</button>
+        <a href="point.html" class="history-link">포인트 내역보기</a>
+      </aside>
 
-.footer-links a:hover {
-  color: #cccccc;
-}
+      
+      <section class="content">
 
-.popup-overlay {
-  position: fixed; top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.35);
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        <!-- 내가 등록한 심부름 -->
+        <div class="section-wrap">
+          <h2 class="section-title">내가 등록한 심부름</h2>
+          <div class="pager">
+            <button class="arrow" id="regPrev">&#8249;</button>
+            <div class="viewport">
+              <div class="track" id="regTrack">
 
-.popup-box {
-  background: #fff;
-  border-radius: 16px;
-  padding: 32px 28px;
-  width: 320px;
-}
+                <div class="page">
+                  <div class="card">
+                    <span class="badge">학습</span>
+                    <p class="card-title">프린트물 강의실 앞 전달</p>
+                    <div class="card-foot">
+                      <button class="btn btn-brown">리뷰 작성</button>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <span class="badge">생활</span>
+                    <p class="card-title">기숙사 택배 대리 수령 부탁드려요</p>
+                    <div class="card-foot">
+                      <button class="btn btn-gray" disabled>리뷰 작성 완료</button>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <span class="badge">생활</span>
+                    <p class="card-title">기숙사 택배 대리 수령 부탁드려요</p>
+                    <div class="card-foot">
+                      <button class="btn btn-gray">취소</button>
+                    </div>
+                  </div>
+                </div>
 
-.popup-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 6px;
-}
+                <div class="page">
+                  <div class="card card-empty"><p class="empty-txt">등록된 심부름이 없습니다</p></div>
+                  <div class="card card-empty"><p class="empty-txt">등록된 심부름이 없습니다</p></div>
+                  <div class="card card-empty"><p class="empty-txt">등록된 심부름이 없습니다</p></div>
+                </div>
 
-.popup-sub {
-  font-size: 13px;
-  color: #888;
-  margin-bottom: 24px;
-}
+                <div class="page">
+                  <div class="card card-empty"><p class="empty-txt">등록된 심부름이 없습니다</p></div>
+                  <div class="card card-empty"><p class="empty-txt">등록된 심부름이 없습니다</p></div>
+                  <div class="card card-empty"><p class="empty-txt">등록된 심부름이 없습니다</p></div>
+                </div>
 
-.popup-sub span {
-  font-weight: 600;
-  color: #9f8461;
-}
+                <div class="page">
+                  <div class="card card-empty"><p class="empty-txt">등록된 심부름이 없습니다</p></div>
+                  <div class="card card-empty"><p class="empty-txt">등록된 심부름이 없습니다</p></div>
+                  <div class="card card-empty"><p class="empty-txt">등록된 심부름이 없습니다</p></div>
+                </div>
 
-.popup-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 24px;
-}
+              </div>
+            </div>
+            <button class="arrow" id="regNext">&#8250;</button>
+          </div>
+          <div class="dots" id="regDots"></div>
+        </div>
 
-.popup-opt {
-  border: 1.5px solid #e0dada;
-  border-radius: 10px;
-  padding: 14px 0;
-  background: transparent;
-  font-size: 15px;
-  font-weight: 500;
-  color: #333;
-  cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
-  transition: all 0.15s;
-}
+        <!-- 내가 맡은 심부름 -->
+        <div class="section-wrap">
+          <h2 class="section-title">내가 맡은 심부름</h2>
+          <div class="pager">
+            <button class="arrow" id="takePrev">&#8249;</button>
+            <div class="viewport">
+              <div class="track" id="takeTrack">
 
-.popup-opt.selected {
-  border-color: #9f8461;
-  background: #faf8f5;
-  color: #9f8461;
-}
+                <div class="page">
+                  <div class="card">
+                    <span class="badge">학습</span>
+                    <p class="card-title">프린트물 강의실 앞 전달</p>
+                    <div class="card-foot">
+                      <button class="btn btn-brown">채팅 하기</button>
+                    </div>
+                  </div>
+                  <div class="card card-empty"><p class="empty-txt">맡은 심부름이 없습니다</p></div>
+                  <div class="card card-empty"><p class="empty-txt">맡은 심부름이 없습니다</p></div>
+                </div>
 
-.popup-btns {
-  display: flex;
-  gap: 10px;
-}
+                <div class="page">
+                  <div class="card card-empty"><p class="empty-txt">맡은 심부름이 없습니다</p></div>
+                  <div class="card card-empty"><p class="empty-txt">맡은 심부름이 없습니다</p></div>
+                  <div class="card card-empty"><p class="empty-txt">맡은 심부름이 없습니다</p></div>
+                </div>
 
-.popup-cancel {
-  flex: 1; padding: 12px 0;
-  border-radius: 8px;
-  border: 1.5px solid #e0dada;
-  background: transparent;
-  font-size: 14px;
-  color: #888;
-  cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
-}
+              </div>
+            </div>
+            <button class="arrow" id="takeNext">&#8250;</button>
+          </div>
+          <div class="dots" id="takeDots"></div>
+        </div>
 
-.popup-confirm {
-  flex: 1; padding: 12px 0;
-  border-radius: 8px;
-  border: none;
-  background: #9f8461;
-  font-size: 14px;
-  font-weight: 500;
-  color: #fff;
-  cursor: pointer;
-  font-family: 'Noto Sans KR', sans-serif;
-}
+      </section>
+    </div>
 
-.popup-confirm:hover { background: #8a7050; }
+    <!-- 포인트 충전 팝업 -->
+  <div class="popup-overlay" id="chargePopup" style="display:none;">
+    <div class="popup-box">
+      <p class="popup-title">포인트 충전</p>
+      <p class="popup-sub">현재 보유 포인트: <span id="popupCurrent">1200P</span></p>
+      <div class="popup-options">
+        <button class="popup-opt" data-val="500">500P</button>
+        <button class="popup-opt" data-val="1000">1000P</button>
+        <button class="popup-opt" data-val="3000">3000P</button>
+    </div>
+      <div class="popup-btns">
+        <button class="popup-cancel" id="popupCancel">취소</button>
+        <button class="popup-confirm" id="popupConfirm">충전하기</button>
+    </div>
+  </div>
+</div>
+  </main>
+
+  <footer id="footer">
+        <div class="footer-left">
+            <div class="footer-logo">
+                <img src="/images/dukkun.png" alt="dukkun logo">
+            </div>
+            <div class="footer-content">
+                <p>made by Team RoLo</p>
+                <p>&copy; dukkun. All rights reserved.</p>
+            </div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#">이용약관</a>
+            <a href="#">개인정보처리방침</a>
+        </div>
+    </footer>
+
+
+  <script src="js/mypage.js"></script>
+</body>
+</html>
