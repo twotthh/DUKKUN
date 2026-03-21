@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dukkun - 채팅</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/chat.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">dukkun</a>
+    <ul class="nav-links">
+      <li><a href="#">홈</a></li>
+      <li><a href="#">덕꾼 임무 목록</a></li>
+      <li><a href="#">마이페이지</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE -->
+  <div class="page">
+
+    <a href="#" class="back-link">&#8249; 채팅목록으로 돌아가기</a>
+
+    <!-- Post Card -->
+    <div class="post-card">
+      <div class="post-title">기숙사 택배 대신 수령해주실 분</div>
+      <div class="post-meta">
+        <span class="loc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.75-7-11a7 7 0 1 1 14 0c0 4.25-7 11-7 11z"/><circle cx="12" cy="10" r="2"/></svg>
+          인문사회관
+        </span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="loc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.75-7-11a7 7 0 1 1 14 0c0 4.25-7 11-7 11z"/><circle cx="12" cy="10" r="2"/></svg>
+          하나누리관
+        </span>
+      </div>
+    </div>
+
+    <!-- Chat messages -->
+    <div class="chat-area" id="chatArea">
+
+      <!-- Other person -->
+      <div class="msg-row">
+        <div class="avatar">덕</div>
+        <div class="msg-col">
+          <span class="sender-name">덕새예요</span>
+          <div class="bubble">안녕하세요-! 제가 덕꾼인데요<br>혹시 기숙사 몇 호신가요?</div>
+          <div class="bubble-meta">
+            <span>15:36</span>
+            <span>읽음</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Me -->
+      <div class="msg-row me">
+        <div class="avatar my-avatar">나</div>
+        <div class="msg-col me">
+          <div class="bubble">앗 401호 입니다 ㅎㅎ '</div>
+          <div class="bubble-meta">
+            <span>읽음</span>
+            <span>15:44</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Me (연속) -->
+      <div class="msg-row me">
+        <div class="avatar my-avatar invisible">나</div>
+        <div class="msg-col me">
+          <div class="bubble">감사합니다 :)</div>
+          <div class="bubble-meta">
+            <span>읽음</span>
+            <span>15:44</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Input bar -->
+    <div class="input-bar">
+      <div class="input-wrap">
+        <input type="text" id="msgInput" placeholder="메시지를 입력하세요..." />
+      </div>
+      <button class="send-btn" id="sendBtn">전 송</button>
+    </div>
+
+  </div>
+
+   <footer id="footer">
+        <div class="footer-left">
+            <div class="footer-logo">
+                <img src="/images/duksae.png" alt="dukkun logo">
+            </div>
+            <div class="footer-content">
+                <p>made by Team RoLo</p>
+                <p>&copy; dukkun. All rights reserved.</p>
+            </div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#">이용약관</a>
+            <a href="#">개인정보처리방침</a>
+        </div>
+    </footer>
+
+
+  <script src="js/chat.js"></script>
+</body>
+</html>

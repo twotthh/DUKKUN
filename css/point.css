@@ -1,0 +1,240 @@
+
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brown:      #9F8461;
+  --gold:       #FFAA00;
+  --text-dark:  #1A1A1A;
+  --text-mid:   #444444;
+  --text-muted: #999999;
+  --bg:         #FFFFFF;
+  --border:     #E0E0E0;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f5f5f5
+  color: var(--text-dark);
+  min-height: 100vh;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 56px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--brown);
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.nav { display: flex; gap: 40px; }
+
+.nav-link {
+  font-size: 14px;
+  color: #444;
+  text-decoration: none;
+}
+.nav-link:hover { color: var(--brown); }
+.nav-link.active { font-weight: 400; color: #222; }
+
+/* 포인트내역 */
+.main {
+  padding: 32px 48px 60px;
+  max-width: 1060px;
+  margin: 0 auto;
+  margin-left: 24px;
+}
+
+
+.page-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 16px;
+}
+
+/* ── 포인트 카드 ── */
+.point-card {
+  border: none;
+  padding: 16px 20px 20px;
+  margin-bottom: 20px;
+}
+
+.point-card__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFAA00;
+  margin-bottom: 6px;
+}
+
+.point-card__value {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.point-number {
+  font-size: 22px;
+  font-weight: 800;
+  color: #222;
+}
+
+.point-unit {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+/* 버튼 탭 */
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  padding-left: 50px;
+}
+
+.filter-tab {
+  padding: 4px 14px;
+  font-size: 13px;
+  font-weight: 400;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: #fff;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.filter-tab:hover {
+  border-color: var(--brown);
+  color: var(--brown);
+}
+
+.filter-tab.active {
+  background: var(--brown);
+  border-color: var(--brown);
+  color: #fff;
+}
+
+/* ── 스크롤  ── */
+.history-scroll {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0 50px 60px;
+}
+
+.history-list {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* 스크롤바 스타일 */
+.history-list::-webkit-scrollbar {
+  width: 6px;
+}
+.history-list::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+.history-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 99px;
+}
+.history-list::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+/* ── 내역 아이템 ── */
+.history-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 16px 28px;
+  background: #fff;
+  border-bottom: none;
+}
+
+
+
+.history-item__left {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.history-item__type {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFAA00;
+}
+
+.history-item__date {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.history-item__amount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #757575;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+
+.empty-state {
+  padding: 40px 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+footer {
+  background: #5d5448;
+  padding: 60px 40px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-size: 14px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo img {
+  height: 30px;
+ 
+}
+.footer-logo {
+  margin-bottom: 15px;
+}
+.footer-content p {
+  margin-bottom: 5px;
+  color: #cccccc;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #cccccc;
+}

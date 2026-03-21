@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>포인트 내역 - dukkun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/point.css" />
+</head>
+<body>
+
+    <header class="header">
+  <a href="#" class="logo">dukkun</a>
+  <nav class="nav">
+    <a href="#" class="nav-link">홈</a>
+    <a href="#" class="nav-link">덕꾼 임무 목록</a>
+    <a href="#" class="nav-link">마이페이지</a>
+  </nav>
+</header>
+
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <section class="page-header">
+      <h1 class="page-title">포인트 내역</h1>
+    </section>
+
+    <!-- 현재 포인트 카드 -->
+    <div class="point-card" id="pointCard">
+      <div class="point-card__label">현재 포인트</div>
+      <div class="point-card__value">
+        <span class="point-number" id="currentPoint">1200</span>
+        <span class="point-unit">P</span>
+      </div>
+      <div class="point-card__bar">
+        <div class="point-card__bar-fill" id="pointBarFill"></div>
+      </div>
+    </div>
+
+    <!-- 필터 탭 -->
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" data-filter="all">전체</button>
+      <button class="filter-tab" data-filter="충전">충전</button>
+      <button class="filter-tab" data-filter="사용">사용</button>
+      <button class="filter-tab" data-filter="적립">적립</button>
+    </div>
+
+    <div class="history-scroll">
+        <div class="history-list" id="historyList"></div>
+    </div>
+
+  </main>
+
+  <footer id="footer">
+        <div class="footer-left">
+            <div class="footer-logo">
+                <img src="dukkun.png" alt="dukkun logo">
+            </div>
+            <div class="footer-content">
+                <p>made by Team RoLo</p>
+                <p>&copy; dukkun. All rights reserved.</p>
+            </div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#">이용약관</a>
+            <a href="#">개인정보처리방침</a>
+        </div>
+    </footer>
+
+  <script src="js/point.js"></script>
+</body>
+</html>
