@@ -44,6 +44,58 @@ function initPager(trackId, dotsId, prevId, nextId) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // 포인트 충전 팝업
+const chargeBtn    = document.querySelector('.btn-charge');
+const popup        = document.getElementById('chargePopup');
+const popupCancel  = document.getElementById('popupCancel');
+const popupConfirm = document.getElementById('popupConfirm');
+const pointsTxt    = document.querySelector('.points-txt');
+const popupCurrent = document.getElementById('popupCurrent');
+let selectedPoint  = 0;
+
+chargeBtn.addEventListener('click', () => {
+  const cur = parseInt(pointsTxt.textContent);
+  popupCurrent.textContent = cur + 'P';
+  selectedPoint = 0;
+  document.querySelectorAll('.popup-opt').forEach(b => b.classList.remove('selected'));
+  popup.style.display = 'flex';
+});
+
+document.querySelectorAll('.popup-opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.popup-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedPoint = parseInt(btn.dataset.val);
+  });
+});
+
+popupCancel.addEventListener('click', () => {
+  popup.style.display = 'none';
+});
+
+popupConfirm.addEventListener('click', () => {
+  if (selectedPoint === 0) {
+    alert('충전할 포인트를 선택해주세요.');
+    return;
+  }
+  const cur = parseInt(pointsTxt.textContent);
+  const newVal = cur + selectedPoint;
+  pointsTxt.textContent = newVal + 'P';
+
+  // localStorage에도 저장
+  const p = JSON.parse(localStorage.getItem('point')) || { balance: cur, history: [] };
+  p.balance = newVal;
+  p.history.unshift({
+    type: 'earn',
+    amount: selectedPoint,
+    desc: '포인트 충전',
+    date: new Date().toLocaleDateString('ko-KR')
+  });
+  localStorage.setItem('point', JSON.stringify(p));
+
+  popup.style.display = 'none';
+  alert(selectedPoint + 'P가 충전되었습니다!');
+});
   initPager("regTrack",  "regDots",  "regPrev",  "regNext");
   initPager("takeTrack", "takeDots", "takePrev", "takeNext");
 });
