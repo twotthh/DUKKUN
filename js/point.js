@@ -84,9 +84,42 @@ filterTabs.addEventListener('click', (e) => {
   renderList();
 });
 
-/* ── 초기화 ── */
+
+
 function init() {
-  currentPointEl.textContent = formatPoint(calcCurrentPoint());
+  const saved = JSON.parse(localStorage.getItem('point'));
+
+  if (saved) {
+    ALL_HISTORY.length = 0;
+
+    saved.history.forEach(h => {
+      ALL_HISTORY.unshift({
+        type: h.type === 'earn' ? '적립' : h.type === 'use' ? '사용' : '충전',
+        date: h.date,
+        amount: h.type === 'use' ? -h.amount : +h.amount
+      });
+    });
+
+    ALL_HISTORY.push(
+      { type: '적립', date: '2026.03.17.12:34', amount: +200   },
+      { type: '충전', date: '2026.03.15.12:34', amount: +10000 },
+      { type: '사용', date: '2026.03.14.10:34', amount: -8300  },
+      { type: '충전', date: '2026.03.13.20:34', amount: +20000 },
+      { type: '사용', date: '2026.03.11.22:34', amount: -1000  },
+      { type: '사용', date: '2026.03.10.09:34', amount: -1000  },
+      { type: '적립', date: '2026.03.08.14:34', amount: +100   },
+      { type: '사용', date: '2026.03.06.19:34', amount: -1000  },
+      { type: '충전', date: '2026.03.05.11:34', amount: +10000 },
+      { type: '사용', date: '2026.03.03.08:12', amount: -5000  },
+      { type: '적립', date: '2026.03.01.10:00', amount: +300   },
+      { type: '충전', date: '2026.02.27.14:20', amount: +5000  }
+    );
+
+    currentPointEl.textContent = formatPoint(saved.balance);
+  } else {
+    currentPointEl.textContent = formatPoint(calcCurrentPoint());
+  }
+
   renderList();
 }
 
