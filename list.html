@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>덕꾼-dukkun</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body class="list-body">
+    <header id="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/dukkun.png" alt="dukkun logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="home.html" class="auth-required">덕꾼 임무 목록</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="auth-required">마이 페이지</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="mypage.html" class="auth-required">마이 페이지</a></li>
+                            <li><a href="chat_list.html" class="auth-required">채팅</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-auth" id="headerAuth">
+                <div id="loggedOutState">
+                    <button class="btn-login" onclick="location.href='login.html'">로그인</button>
+                    <button class="btn-signup" onclick="location.href='signup.html'">회원가입</button>
+                </div>
+                <div id="loggedInState" class="hidden logged-in-state">
+
+                <div class="profile-wrap">
+                    <img id="userProfilePic" src="images/monkey.png" alt="프로필" class="profile-pic-small">
+                    <span class="user-nickname"><span id="userNickname">덕꾼</span>님, 반가워요!</span>
+                </div>
+
+                <div class="noti-wrap">
+                    <button id="notiBtn" class="noti-btn">
+                        <span class="material-symbols-rounded noti-icon">notifications</span>
+                        <span id="notiBadge" class="noti-badge hidden">2</span>
+                    </button>
+                    
+                    <div id="notiDropdown" class="noti-dropdown hidden">
+                        <div class="noti-header">
+                            <span id="unreadCountText">안 읽은 중요알림 0건</span>
+                            <span class="material-symbols-rounded noti-info-icon" title="알림 키워드 설정은 마이페이지에서 수정 가능합니다.">info</span>
+                        </div>
+                        <div class="noti-list" id="notiList">
+                            <div class="noti-empty">도착한 알림이 없습니다.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="list-main-page">
+        <section class="list-section">
+            <div class="list-inner">
+                <h1 class="list-page-title">덕꾼 임무 목록</h1>
+
+                <div class="list-filter-bar">
+                    <span class="filter-title">조건 검색</span>
+
+                    <div class="filter-dropdown" data-filter="sort">
+                        <button class="filter-tab" type="button">
+                            <span class="filter-tab-label">최신순</span>
+                            <span class="filter-tab-arrow">▾</span>
+                        </button>
+                        <div class="filter-dropdown-menu">
+                            <button type="button" class="filter-option" data-value="최신순">최신순</button>
+                            <button type="button" class="filter-option" data-value="오래된순">오래된순</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-dropdown" data-filter="place">
+                        <button class="filter-tab" type="button">
+                            <span class="filter-tab-label">전체</span>
+                            <span class="filter-tab-arrow">▾</span>
+                        </button>
+                        <div class="filter-dropdown-menu filter-dropdown-menu-place">
+                            <button type="button" class="filter-option" data-value="전체">전체</button>
+                            <button type="button" class="filter-option" data-value="정문">정문</button>
+                            <button type="button" class="filter-option" data-value="도서관">도서관</button>
+                            <button type="button" class="filter-option" data-value="차미리사기념관">차미리사기념관</button>
+                            <button type="button" class="filter-option" data-value="학생회관">학생회관</button>
+                            <button type="button" class="filter-option" data-value="대강의동">대강의동</button>
+                            <button type="button" class="filter-option" data-value="인문사회관">인문사회관</button>
+                            <button type="button" class="filter-option" data-value="자연관 A동">자연관 A동</button>
+                            <button type="button" class="filter-option" data-value="자연관 B동">자연관 B동</button>
+                            <button type="button" class="filter-option" data-value="예술관">예술관</button>
+                            <button type="button" class="filter-option" data-value="약학관">약학관</button>
+                            <button type="button" class="filter-option" data-value="덕성하나누리관">덕성하나누리관</button>
+                            <button type="button" class="filter-option" data-value="유아교육관">유아교육관</button>
+                            <button type="button" class="filter-option" data-value="기숙사(가온I관)">기숙사(가온I관)</button>
+                            <button type="button" class="filter-option" data-value="기숙사(가온II관)">기숙사(가온II관)</button>
+                            <button type="button" class="filter-option" data-value="후문">후문</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-card-list" id="listCardList"></div>
+
+                <div class="list-pagination">
+                    <button class="page-btn prev" id="prevPageBtn" type="button">← 이전</button>
+                    <span class="page-number" id="pageNumber">1/1</span>
+                    <button class="page-btn next" id="nextPageBtn" type="button">다음 →</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="js/task_board.js"></script>
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>

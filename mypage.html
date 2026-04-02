@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>덕꾼-dukkun</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mypage.css">
+</head>
+<body>
+
+    <header id="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/dukkun.png" alt="dukkun logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="home.html" class="auth-required">덕꾼 임무 목록</a></li>
+                    <li class="dropdown">
+                        <div class="auth-required">마이 페이지</div>
+                        <ul class="dropdown-menu">
+                            <li><a href="mypage.html" class="auth-required">마이 페이지</a></li>
+                            <li><a href="chat_list.html" class="auth-required">채팅</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-auth" id="headerAuth">
+                <div id="loggedOutState">
+                    <button class="btn-login" onclick="location.href='login.html'">로그인</button>
+                    <button class="btn-signup" onclick="location.href='signup.html'">회원가입</button>
+                </div>
+                
+                <div id="loggedInState" class="hidden logged-in-state">
+              <div class="profile-wrap">
+                <div id="header-avatar-wrap" style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background-color: #F8F6F2; border: 1px solid #e0e0e0; overflow: hidden; flex-shrink: 0;">
+                    <img id="userProfilePic" src="images/monkey.png" alt="프로필" style="width: 90%; height: 90%; object-fit: contain; z-index: 1; display: block !important; visibility: visible !important; opacity: 1 !important;">
+                    <span id="header-hat" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; z-index: 10;"></span>
+                </div>
+                
+                <span class="user-nickname"><span id="userNickname">덕꾼</span>님, 반가워요!</span>
+            </div>
+
+              <div class="noti-wrap">
+                  <button id="notiBtn" class="noti-btn">
+                      <span class="material-symbols-rounded noti-icon">notifications</span>
+                      <span id="notiBadge" class="noti-badge hidden">2</span>
+                  </button>
+                  
+                  <div id="notiDropdown" class="noti-dropdown hidden">
+                      <div class="noti-header">
+                          <span id="unreadCountText">안 읽은 중요알림 0건</span>
+                          <span class="material-symbols-rounded noti-info-icon" title="알림 키워드 설정은 마이페이지에서 수정 가능합니다.">info</span>
+                      </div>
+                      <div class="noti-list" id="notiList">
+                          <div class="noti-empty">도착한 알림이 없습니다.</div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+        </div>
+    </header>
+
+<div class="wrap" style="margin-top: 80px;"> 
+  <div class="sidebar">
+    <div class="profile-card">
+      <div class="rank-banner r10"></div>
+      
+      <div class="avatar-wrap">
+        <div class="avatar-circle">
+          <img src="images/monkey.png" alt="프로필 원숭이" class="av-monkey">
+          <span class="av-hat" id="av-hat"></span>
+          <button class="edit-char-btn" onclick="openCharModal()">
+            <i class="fas fa-pencil-alt"></i> ✏️
+          </button>
+        </div>
+      </div>
+      
+      <div class="modal-bg" id="charModal">
+        <div class="modal char-integrated-modal">
+          <div class="mhdr">
+            <div class="tab-menu">
+              <button class="tab-btn active" onclick="switchTab('deco')">🎨 캐릭터 꾸미기</button>
+              <button class="tab-btn" onclick="switchTab('shop')">🛍️ 아이템 상점</button>
+            </div>
+            <button class="mclose" onclick="closeCharModal()">✕</button>
+          </div>
+      
+          <div id="deco-tab" class="tab-content active">
+            <div class="mbody">
+              <div class="char-preview">
+                <div class="char-doll">
+                  <img src="images/monkey.png" class="char-monkey">
+                  <div class="char-doll-hat" id="preview-hat"></div>
+                </div>
+                <div class="char-hint">미리보기</div>
+              </div>
+              
+              <div class="owned-label">보유 중인 아이템</div>
+              <div class="item-grid" id="owned-items">
+                <div class="item-slot" onclick="pickHat(this, '')">
+                  <span class="material-symbols-rounded" style="font-size: 32px; color: #ccc;">block</span>
+                </div>
+                <div class="item-slot" onclick="pickHat(this,'images/cap.png')"><img src="images/cap.png"></div>
+                <div class="item-slot" onclick="pickHat(this,'images/sunglass.png')"><img src="images/sunglass.png"></div>
+                <div class="item-slot" onclick="pickHat(this,'images/ribbon.png')"><img src="images/ribbon.png"></div>
+              </div>
+              
+              <button class="btn-save" onclick="saveCharacter()">이 스타일로 저장하기</button>
+            </div>
+          </div>
+      
+          <div id="shop-tab" class="tab-content">
+            <div class="mbody shop-body">
+              <p class="shop-intro">포인트를 사용하여 아이템을 구매하세요!</p>
+              <div class="shop-scroll-area">
+              <div class="shop-grid">
+                <div class="shop-item">
+                  <div class="shop-item-preview"><img src="images/headset.png"></div>
+                  <div class="shop-item-name">게이밍 헤드셋</div>
+                  <button class="btn-buy" onclick="buyItem(this, 'images/headset.png', '헤드셋', 1000)">1000P</button>
+                </div>
+                <div class="shop-item">
+                  <div class="shop-item-preview"><img src="images/gold_scarf.png"></div>
+                  <div class="shop-item-name">골드 스카프</div>
+                  <button class="btn-buy" onclick="buyItem(this, 'images/gold_scarf.png', '스카프', 1500)">1500P</button>
+                </div>
+                  <div class="shop-item">
+                    <div class="shop-item-preview"><img src="images/sunglass.png" alt="선글라스"></div>
+                    <div class="shop-item-name">힙한 선글라스</div>
+                    <button class="btn-buy" onclick="buyItem(this, 'images/sunglass.png', '힙한 선글라스', 450)">450P</button>
+                  </div>
+                  <div class="shop-item">
+                    <div class="shop-item-preview"><img src="images/ribbon.png" alt="리본"></div>
+                    <div class="shop-item-name">깜찍한 리본</div>
+                    <button class="btn-buy" onclick="buyItem(this, 'images/ribbon.png', '깜찍한 리본', 500)">500P</button>
+                  </div>
+                  <div class="shop-item">
+                    <div class="shop-item-preview"><img src="images/red_scarf.png" alt="레드 스카프"></div>
+                    <div class="shop-item-name">정열의 레드 스카프</div>
+                    <button class="btn-buy" onclick="buyItem(this, 'images/red_scarf.png', '정열의 레드 스카프', 800)">800P</button>
+                  </div>
+                  <div class="shop-item">
+                    <div class="shop-item-preview"><img src="images/cap.png" alt="캡 모자"></div>
+                    <div class="shop-item-name">스포티 캡</div>
+                    <button class="btn-buy" onclick="buyItem(this, 'images/cap.png', '스포티 캡', 600)">600P</button>
+                  </div>
+                  <div class="shop-item">
+                    <div class="shop-item-preview"><img src="images/glasses.png" alt="뿔테안경"></div>
+                    <div class="shop-item-name">뿔테안경</div>
+                    <button class="btn-buy" onclick="buyItem(this, 'images/glasses.png', '뿔테안경', 400)">400P</button>
+                  </div>
+                  <div class="shop-item">
+                    <div class="shop-item-preview"><img src="images/gold_beanie.png" alt="골드 비니"></div>
+                    <div class="shop-item-name">골드 비니</div>
+                    <button class="btn-buy" onclick="buyItem(this, 'images/gold_beanie.png', '골드 비니', 700)">700P</button>
+                  </div>
+                  <div class="shop-item">
+                    <div class="shop-item-preview"><img src="images/neckwarmer.png" alt="넥워머"></div>
+                    <div class="shop-item-name">넥워머</div>
+                    <button class="btn-buy" onclick="buyItem(this, 'images/neckwarmer.png', '넥워머', 300)">300P</button>
+                  </div>
+                  <div class="shop-item">
+                    <div class="shop-item-preview"><img src="images/green_beanie.png" alt="초록색 비니"></div>
+                    <div class="shop-item-name">초록색 비니</div>
+                    <button class="btn-buy" onclick="buyItem(this, 'images/green_beanie.png', '초록색 비니', 800)">800P</button>
+                  </div>
+                  <div class="shop-item">
+                    <div class="shop-item-preview"><img src="images/earmuffs.png" alt="귀마개"></div>
+                    <div class="shop-item-name">귀마개</div>
+                    <button class="btn-buy" onclick="buyItem(this, 'images/earmuffs.png', '귀마개', 500)">500P</button>
+                  </div>
+              </div>
+              </div>
+            </div>
+            <div class="shop-footer">
+              <div class="shop-my-pt">
+                내 보유 포인트: <span class="pt-val" id="my-pt-display">1,200</span>P             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-body">
+        <div class="uname">덕꾼 유저</div>
+ 
+        <div class="rank-badge" onclick="openPanel('rank')">
+          <span class="rank-badge-ver">⭐</span>
+          <span class="rank-badge-dot">·</span>
+          <span class="rank-badge-name">수습 덕꾼</span>
+        </div>
+ 
+        <div class="pt-inline" onclick="window.openPointPanel()" style="cursor: pointer;">
+          <div class="pt-inline-left">
+            <div class="pt-inline-label">보유 포인트</div>
+            <div class="pt-inline-val">0<small>P</small></div>
+          </div>
+          <span class="pt-inline-arrow">›</span>
+        </div>
+ 
+        <div class="stats-row">
+          <div class="stat-box"><div class="stat-n">0</div><div class="stat-l">완료</div></div>
+          <div class="stat-box"><div class="stat-n">0.0</div><div class="stat-l">별점</div></div>
+          <div class="stat-box"><div class="stat-n">0</div><div class="stat-l">진행 중</div></div>
+        </div>
+
+        <div class="profile-divider"></div>
+        <button class="logout-txt" onclick="openPanel('account')" style="border: none; background: transparent; cursor: pointer;">계좌 관리</button>
+        <div class="profile-divider"></div>
+        <button class="logout-txt" onclick="openReviewPanel()" style="border: none; background: transparent; cursor: pointer;">리뷰 확인</button>
+        <div class="profile-divider"></div>
+        <button class="logout-txt" onclick="openPanel('alert')" style="border: none; background: transparent; cursor: pointer;">알림 설정</button>
+        <div class="profile-divider"></div>
+
+      </div>
+    </div>
+
+    <button id="btnInviteFriend" class="btn-invite">
+        <span class="material-symbols-rounded" style="font-size: 20px; vertical-align: bottom;">group_add</span> 
+        친구 초대하고 함께 500P 받기
+    </button>
+  </div>
+ 
+  <div class="content">
+    <div class="section">
+      <div class="sec-header">
+        <div class="sec-title">내가 등록한 심부름</div>
+        <button class="sec-more" onclick="openModal('m-reg')">전체보기 →</button>
+      </div>
+      <div class="slider-outer">
+        <button class="side-arrow" id="reg-prev" onclick="slide('reg',-1)" disabled>‹</button>
+        <div class="slide-viewport">
+          </div>
+        <button class="side-arrow" id="reg-next" onclick="slide('reg',1)">›</button>
+      </div>
+      <div class="dots-row" id="reg-dots">
+        <div class="pdot on"></div>
+        <div class="pdot"></div>
+      </div>
+    </div>
+ 
+    <div class="section">
+      <div class="sec-header">
+        <div class="sec-title">내가 맡은 심부름</div>
+        <button class="sec-more" onclick="openModal('m-recv')">전체보기 →</button>
+      </div>
+      <div class="slider-outer">
+        <button class="side-arrow" id="recv-prev" onclick="slide('recv',-1)" disabled>‹</button>
+        <div class="slide-viewport">
+          </div>
+        <button class="side-arrow" id="recv-next" onclick="slide('recv',1)">›</button>
+      </div>
+      <div class="dots-row" id="recv-dots">
+        <div class="pdot on"></div>
+        <div class="pdot"></div>
+      </div>
+    </div>
+ 
+  </div>
+</div>
+
+<div style="text-align:center; padding: 16px 0 32px;">
+  <a class="logout-txt" href="#" id="btnLogout">로그아웃</a>
+</div>
+
+<div class="panel-bg" id="rank-panel-bg" onclick="closePanelBg(event,'rank')">
+  <div class="rank-panel">
+    <div class="panel-hdr">
+      <div class="panel-title"> 덕꾼 등급 안내</div>
+      <button class="panel-close" onclick="closePanel('rank')">✕</button>
+    </div>
+    <div class="rsteps">
+      <div class="rstep">
+        <div class="rstep-icon"><img src="images/green_banana.png" alt="icon"></div>
+        <div class="rstep-info">
+          <div class="rstep-top"><span class="rstep-name">수습 덕꾼</span></div>
+          <div class="rstep-req">완료한 심부름 10개 미만 & 별점 2.5미만</div>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="rstep-icon"><img src="images/yellow_banana.png"></div>
+        <div class="rstep-info">
+          <div class="rstep-top"><span class="rstep-name">단골 덕꾼</span></div>
+          <div class="rstep-req">완료한 심부름 10개 이상 & 별점 2.5이상</div>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="rstep-icon"><img src="images/peeled_banana.png"></div>
+        <div class="rstep-info">
+          <div class="rstep-top"><span class="rstep-name">성실 덕꾼</span></div>
+          <div class="rstep-req">완료한 심부름 15개 이상 & 별점 3.0이상</div>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="rstep-icon"><img src="images/gold_banana.png"></div>
+        <div class="rstep-info">
+          <div class="rstep-top"><span class="rstep-name">전설의 덕꾼</span></div>
+          <div class="rstep-req">완료한 심부름 20개 이상 & 별점 4.0이상</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pt-panel-bg" id="account-panel-bg" onclick="closePanelBg(event,'account')">
+  <div class="pt-panel">
+    <div class="pt-panel-hdr">
+      <div class="pt-panel-title">내 계좌</div>
+      <button class="panel-close" onclick="closePanel('account')">✕</button>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <select style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid #E2DAD0; font-size:13px; background:#FAF9F7; color:#757575; font-family:inherit;">
+        <option>은행 선택</option>
+        <option>카카오뱅크</option>
+        <option>토스뱅크</option>
+        <option>국민은행</option>
+        <option>신한은행</option>
+        <option>우리은행</option>
+        <option>하나은행</option>
+      </select>
+      <input type="text" placeholder="계좌번호 입력" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid #E2DAD0; font-size:13px; background:#FAF9F7; color:#757575; font-family:inherit;">
+      <button class="btn-save" onclick="showToast('✅ 계좌가 저장되었습니다!'); closePanel('account')">저장하기</button>
+    </div>
+  </div>
+</div>
+
+<div class="pt-panel-bg" id="review-panel-bg" onclick="closePanelBg(event,'review')">
+  <div class="pt-panel" style="max-width: 500px;">
+    <div class="pt-panel-hdr">
+      <div class="pt-panel-title">⭐ 리뷰 확인</div>
+      <button class="panel-close" onclick="closePanel('review')">✕</button>
+    </div>
+    
+    <div class="tab-menu" style="margin-bottom: 16px; border-bottom: 1px solid #E2DAD0;">
+      <button class="tab-btn active" id="btn-tab-toMe" onclick="switchReviewTab('toMe')">나에게 남긴 리뷰</button>
+      <button class="tab-btn" id="btn-tab-byMe" onclick="switchReviewTab('byMe')">내가 남긴 리뷰</button>
+    </div>
+    
+    <div id="review-toMe-tab" class="review-tab-content active">
+      <div class="review-list" id="reviewToMeList">
+        <div style="text-align:center; padding:20px; color:#888;">로딩 중...</div>
+      </div>
+    </div>
+    
+    <div id="review-byMe-tab" class="review-tab-content" style="display:none;">
+      <div class="review-list" id="reviewByMeList">
+        <div style="text-align:center; padding:20px; color:#888;">로딩 중...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pt-panel-bg" id="alert-panel-bg" onclick="closePanelBg(event,'alert')">
+  <div class="pt-panel alert-custom-panel">
+    <div class="pt-panel-hdr" style="border-bottom: none; padding-bottom: 0; margin-bottom: 15px;">
+      <div class="pt-panel-title" style="font-size: 18px; font-weight: 800; color: #4D4439;">🔔 맞춤 알림 설정</div>
+      <button class="panel-close" onclick="closePanel('alert')">✕</button>
+    </div>
+    
+    <div style="display:flex; flex-direction:column; gap:24px;">
+      
+      <div>
+        <label class="alert-sec-label">📍 선호 위치 (다중 선택 가능)</label>
+        <div class="checkbox-grid loc-grid" id="locCheckboxes">
+          <label><input type="checkbox" value="정문"> 정문</label>
+          <label><input type="checkbox" value="도서관"> 도서관</label>
+          <label><input type="checkbox" value="차미리사기념관"> 차미리사기념관</label>
+          <label><input type="checkbox" value="학생회관"> 학생회관</label>
+          <label><input type="checkbox" value="대강의동"> 대강의동</label>
+          <label><input type="checkbox" value="인문사회관"> 인문사회관</label>
+          <label><input type="checkbox" value="자연관 A동"> 자연관 A동</label>
+          <label><input type="checkbox" value="자연관 B동"> 자연관 B동</label>
+          <label><input type="checkbox" value="예술관"> 예술관</label>
+          <label><input type="checkbox" value="약학관"> 약학관</label>
+          <label><input type="checkbox" value="덕성하나누리관"> 덕성하나누리관</label>
+          <label><input type="checkbox" value="국제관"> 국제관</label>
+          <label><input type="checkbox" value="유아교육관"> 유아교육관</label>
+          <label><input type="checkbox" value="기숙사(가온I관)"> 기숙사(가온I관)</label>
+          <label><input type="checkbox" value="기숙사(가온II관)"> 기숙사(가온II관)</label>
+          <label><input type="checkbox" value="후문"> 후문</label>
+        </div>
+        <p class="alert-hint">* 아무것도 선택하지 않으면 모든 위치의 알림을 받습니다.</p>
+      </div>
+
+      <div>
+        <label class="alert-sec-label">⏰ 선호 시간대 (다중 선택 가능)</label>
+        <div class="checkbox-grid time-grid" id="timeCheckboxes">
+          <label><input type="checkbox" value="morning"> 아침 덕꾼 (09~12시)</label>
+          <label><input type="checkbox" value="afternoon"> 점심 덕꾼 (12~15시)</label>
+          <label><input type="checkbox" value="afternoon"> 오후 덕꾼 (16~18시)</label>
+          <label><input type="checkbox" value="evening"> 저녁 덕꾼 (18~22시)</label>
+          <label><input type="checkbox" value="dawn"> 새벽 덕꾼 (23~08시)</label>
+          <label><input type="checkbox" value="weekend"> 주말 포함</label>
+        </div>
+        <p class="alert-hint alert-warn">⚡ '빠른 매칭'은 위 설정과 무관하게 즉시 알림이 발송됩니다.</p>
+      </div>
+
+      <button class="btn-save alert-save-btn" id="btnSaveAlertSettings">설정 저장하기</button>
+    </div>
+  </div>
+</div>
+ 
+<div class="modal-bg" id="m-reg" onclick="bgClose(event,'m-reg')">
+  <div class="modal">
+    <div class="mhdr">
+      <div class="mtitle">📋 내가 등록한 심부름 전체</div>
+      <button class="mclose" onclick="closeModal('m-reg')">✕</button>
+    </div>
+    <div class="mbody">
+    </div>
+  </div>
+</div>
+ 
+<div class="modal-bg" id="m-recv" onclick="bgClose(event,'m-recv')">
+  <div class="modal">
+    <div class="mhdr">
+      <div class="mtitle">📦 내가 맡은 심부름 전체</div>
+      <button class="mclose" onclick="closeModal('m-recv')">✕</button>
+    </div>
+    <div class="mbody">
+    </div>
+  </div>
+</div>
+ 
+<div class="toast" id="toast"></div>
+
+<div id="shopConfirmModal" class="modal-overlay hidden" style="z-index: 2000;">
+    <div class="modal-content" style="text-align: center; max-width: 320px;">
+        <div id="shopConfirmImg" style="width: 80px; height: 80px; margin: 0 auto 10px; background: #FAF9F7; border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+            <img src="" style="width: 70%; height: 70%; object-fit: contain;">
+        </div>
+        <h3 id="shopConfirmTitle" style="margin-bottom: 8px; color: #4D4439;">아이템 구매</h3>
+        <p id="shopConfirmDesc" style="color: #757575; font-size: 14px; margin-bottom: 20px;">정말 구매하시겠습니까?</p>
+        <div class="modal-buttons" style="display: flex; gap: 10px;">
+            <button id="shopCancelBtn" class="btn-cancel" style="flex: 1;">취소</button>
+            <button id="shopAcceptBtn" class="btn-confirm" style="flex: 1;">구매하기</button>
+        </div>
+    </div>
+</div>
+
+<div id="loginModal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <span class="material-symbols-rounded modal-icon">error</span>
+        <h3>로그인이 필요해요</h3>
+        <p>덕꾼의 다양한 기능을 이용하시려면<br>먼저 로그인해 주세요!</p>
+        <div class="modal-buttons">
+            <button id="closeModalBtn" class="btn-cancel">닫기</button>
+            <button id="goToLoginBtn" class="btn-confirm">로그인하러 가기</button>
+        </div>
+    </div>
+</div>
+
+<div id="logoutModal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <span class="material-symbols-rounded modal-icon">logout</span>
+        <h3>로그아웃 하시겠어요?</h3>
+        <p>덕꾼 서비스에서 로그아웃합니다.<br>정말 나가시겠어요?</p>
+        <div class="modal-buttons">
+            <button id="cancelLogoutBtn" class="btn-cancel">취소</button>
+            <button id="confirmLogoutBtn" class="btn-confirm">로그아웃</button>
+        </div>
+    </div>
+</div>
+
+<div class="pt-panel-bg" id="pt-panel-bg" onclick="closePanelBg(event,'pt')">
+  <div class="pt-panel">
+    <div class="pt-panel-hdr">
+      <div class="pt-panel-title">🪙 포인트 내역</div>
+      <button class="panel-close" onclick="closePanel('pt')">✕</button>
+    </div>
+    <div class="pt-panel-total" id="modalTotalPoint">0<small>P</small></div>
+    <div class="pt-system-note">적립 · 임무 완료 보상&nbsp;&nbsp;|&nbsp;&nbsp;차감 · 아이템 구매</div>
+    
+    <div class="pt-list" id="modalPointList">
+      <div style="text-align:center; padding:20px; color:#888;">내역을 불러오는 중...</div>
+    </div>
+    
+  </div>
+</div>
+
+<div id="receiptAlertModal" class="modal-overlay hidden" style="z-index: 2000;">
+    <div class="receipt-modal">
+        <div class="receipt-header">
+            <span class="material-symbols-rounded">receipt_long</span>
+            <h3>정산 영수증</h3>
+        </div>
+        <div class="receipt-body">
+            <p class="receipt-desc">임무를 성공적으로 마쳤습니다! 🎉</p>
+            
+            <div class="receipt-line">
+                <span class="r-label">의뢰 금액 (100%)</span>
+                <span class="r-val" id="receiptMainPrice">0원</span>
+            </div>
+            <div class="receipt-hint">↳ 등록하신 계좌로 입금 대기 중입니다.</div>
+            
+            <div class="receipt-line receipt-plus">
+                <span class="r-label">덕꾼 수고 보상 (2%)</span>
+                <span class="r-val" id="receiptBonusPrice">+ 0P</span>
+            </div>
+            <div class="receipt-hint">↳ 내 덕꾼 포인트 지갑으로 즉시 지급 완료!</div>
+            
+            <div class="receipt-divider"></div>
+        </div>
+        <div class="receipt-footer">
+            <button id="closeReceiptBtn" class="btn-confirm" style="width: 100%;">확인 및 닫기</button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="js/script.js"></script>
+<script type="module" src="js/mypage.js"></script>
+
+</body>
+</html>

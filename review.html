@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>덕꾼-dukkun</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/review.css">
+</head>
+<body>
+<header id="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/dukkun.png" alt="dukkun logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="home.html" class="auth-required">덕꾼 임무 목록</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="auth-required">마이 페이지</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="mypage.html" class="auth-required">마이 페이지</a></li>
+                            <li><a href="chat_list.html" class="auth-required">채팅</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-auth" id="headerAuth">
+                <div id="loggedOutState">
+                    <button class="btn-login" onclick="location.href='login.html'">로그인</button>
+                    <button class="btn-signup" onclick="location.href='signup.html'">회원가입</button>
+                </div>
+                
+                <div id="loggedInState" class="hidden logged-in-state">
+                    <div class="profile-wrap">
+                        <img id="userProfilePic" src="images/monkey.png" alt="프로필" class="profile-pic-small">
+                        <span class="user-nickname"><span id="userNickname">덕꾼</span>님, 반가워요!</span>
+                    </div>
+
+                    <div class="noti-wrap">
+                        <button id="notiBtn" class="noti-btn">
+                            <span class="material-symbols-rounded noti-icon">notifications</span>
+                            <span id="notiBadge" class="noti-badge hidden">2</span>
+                        </button>
+                        
+                        <div id="notiDropdown" class="noti-dropdown hidden">
+                            <div class="noti-header">
+                                <span id="unreadCountText">안 읽은 중요알림 0건</span>
+                                <span class="material-symbols-rounded noti-info-icon" title="알림 키워드 설정은 마이페이지에서 수정 가능합니다." style="cursor: help;">info</span>
+                            </div>
+                            <div class="noti-list" id="notiList">
+                                <div class="noti-empty">도착한 알림이 없습니다.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+  <div class="review-wrap">
+
+    <div class="page-header">
+      <button class="btn-back" onclick="history.back()">← 돌아가기</button>
+      <div class="page-title">리뷰 작성</div>
+    </div>
+
+    <div class="errand-info-card">
+      <div class="ei-top">
+        <span class="ei-label">카테고리</span>
+        <div class="ei-meta-right">
+          <span>방금 전</span>
+          <span>0P</span>
+        </div>
+      </div>
+      <div class="ei-title">심부름 제목 불러오는 중...</div>
+      <div class="ei-footer">
+        <span class="ei-status">정산 완료</span>
+      </div>
+    </div>
+
+    <div class="review-combined-card">
+
+      <div>
+        <div class="field-label">내 심부름을 수행한 덕꾼</div>
+        <div class="reviewer-row">
+          <div class="reviewer-avatar">
+            <img src="images/monkey.png" alt="프로필">
+            <span id="runner-hat"></span>
+          </div>
+          <div class="reviewer-info">
+            <div class="reviewer-name">덕새</div>
+            <div class="reviewer-sub">단골덕꾼 · 완료 62회</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div>
+        <div class="field-label">별점을 남겨주세요</div>
+        <div class="star-row" id="star-row">
+          <span class="star" data-val="1">★</span>
+          <span class="star" data-val="2">★</span>
+          <span class="star" data-val="3">★</span>
+          <span class="star" data-val="4">★</span>
+          <span class="star" data-val="5">★</span>
+        </div>
+        <div class="star-hint" id="star-hint">별점을 선택해주세요</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div>
+        <div class="field-label">리뷰 내용 <span style="color:#B0A898;font-weight:400">(선택)</span></div>
+        <textarea
+          class="review-textarea"
+          id="review-text"
+          placeholder="덕꾼에 대한 솔직한 후기를 남겨주세요."
+          maxlength="300"
+        ></textarea>
+        <div class="char-count"><span id="char-count">0</span> / 300</div>
+      </div>
+      <button class="btn-submit" id="btn-submit" disabled>리뷰 제출하기</button>
+    </div>
+  </div>
+<div id="alertModal" class="modal-overlay hidden">
+      <div class="modal-content">
+          <span id="alertIcon" class="material-symbols-rounded modal-icon" style="color: var(--primary-color);">info</span>
+          <h3 id="alertTitle">알림</h3>
+          <p id="alertMessage">메시지 내용</p>
+          <div class="modal-buttons" style="justify-content: center;">
+              <button id="alertConfirmBtn" class="btn-confirm" style="width: 100%;">확인</button>
+          </div>
+      </div>
+  </div>
+  
+  <script type="module" src="js/script.js"></script>
+  <script type="module" src="js/review.js"></script>
+</body>
+</html>

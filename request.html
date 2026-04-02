@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>덕꾼-dukkun</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/request.css">
+</head>
+<body class="request-body">
+
+    <header id="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/dukkun.png" alt="dukkun logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="home.html" class="auth-required">덕꾼 임무 목록</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="auth-required">마이 페이지</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="mypage.html" class="auth-required">마이 페이지</a></li>
+                            <li><a href="chat_list.html" class="auth-required">채팅</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-auth" id="headerAuth">
+                <div id="loggedOutState">
+                    <button class="btn-login" onclick="location.href='login.html'">로그인</button>
+                    <button class="btn-signup" onclick="location.href='signup.html'">회원가입</button>
+                </div>
+                <div id="loggedInState" class="hidden logged-in-state">
+
+                <div class="profile-wrap">
+                    <img id="userProfilePic" src="images/monkey.png" alt="프로필" class="profile-pic-small">
+                    <span class="user-nickname"><span id="userNickname">덕꾼</span>님, 반가워요!</span>
+                </div>
+
+                <div class="noti-wrap">
+                    <button id="notiBtn" class="noti-btn">
+                        <span class="material-symbols-rounded noti-icon">notifications</span>
+                        <span id="notiBadge" class="noti-badge hidden">2</span>
+                    </button>
+                    
+                    <div id="notiDropdown" class="noti-dropdown hidden">
+                        <div class="noti-header">
+                            <span id="unreadCountText">안 읽은 중요알림 0건</span>
+                            <span class="material-symbols-rounded noti-info-icon" title="알림 키워드 설정은 마이페이지에서 수정 가능합니다.">info</span>
+                        </div>
+                        <div class="noti-list" id="notiList">
+                            <div class="noti-empty">도착한 알림이 없습니다.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="request-main-page">
+        <div class="request-bg-gradients">
+            <div class="gradient gradient-1"></div>
+            <div class="gradient gradient-2"></div>
+        </div>
+
+        <section class="request-section">
+            <div class="request-paper-frame">
+                <div class="paper-top-deco"></div>
+                
+                <div class="request-inner-content">
+                    <div class="request-header-block">
+                        <span class="request-sub-title">OFFICIAL REQUEST</span>
+                        <h1 class="request-page-title">덕꾼 임무 의뢰서</h1>
+                        <p class="request-desc">도움이 필요한 임무를 상세히 기록하여 덕꾼에게 전달하세요.</p>
+                    </div>
+                    
+                    <form class="request-form" id="requestForm" autocomplete="off">
+                        <div class="request-field">
+                            <label for="requestTitle">
+                                <span class="material-symbols-rounded">edit_note</span>
+                                임무 제목
+                            </label>
+                            <div class="request-input-wrap">
+                                <input type="text" id="requestTitle" name="dukkunRequestTitle" placeholder="예: 편의점에서 삼각김밥 사다주실 분" maxlength="60" required>
+                                <span class="input-count">0/60</span>
+                            </div>
+                        </div>
+                        
+                        <div class="request-field category-field">
+                            <label for="requestCategory">
+                                <span class="material-symbols-rounded">category</span>
+                                카테고리
+                            </label>
+                            <div class="request-select-wrap">
+                                <select id="requestCategory" name="requestCategory" required>
+                                    <option value="" disabled selected>분야를 선택해주세요</option>
+                                    <option value="학습">학습 도움</option>
+                                    <option value="생활">생활 편의</option>
+                                    <option value="재능">재능 공유</option>
+                                    <option value="기타">기타 임무</option>
+                                </select>
+                                <span class="material-symbols-rounded select-arrow">expand_more</span>
+                            </div>
+                        </div>
+                        
+                        <div class="request-field location-field">
+                            <label>
+                                <span class="material-symbols-rounded">map</span>
+                                이동 경로 <span style="font-size: 13px; color: #888; font-weight: normal; margin-left: 4px;">(선택)</span>
+                            </label>
+                            <div class="location-input-group">
+                                <div class="request-select-wrap">
+                                    <select id="requestFrom" name="requestFrom">
+                                        <option value="" selected>출발지 (선택안함)</option>
+                                        <option value="정문">정문</option>
+                                        <option value="도서관">도서관</option>
+                                        <option value="차미리사관">차미리사기념관</option>
+                                        <option value="학생회관">학생회관</option>
+                                        <option value="대강의동">대강의동</option>
+                                        <option value="인문사회관">인문사회관</option>
+                                        <option value="자연관 A동">자연관 A동</option>
+                                        <option value="자연관 B동">자연관 B동</option>
+                                        <option value="예술관">예술관</option>
+                                        <option value="약학관">약학관</option>
+                                        <option value="덕성하나누리관">덕성하나누리관</option>
+                                        <option value="국제관">국제관</option>
+                                        <option value="유아교육관">유아교육관</option>
+                                        <option value="기숙사(가온I관)">기숙사(가온I관)</option>
+                                        <option value="기숙사(가온II관)">기숙사(가온II관)</option>
+                                        <option value="후문">후문</option>
+                                    </select>
+                                    <span class="material-symbols-rounded select-arrow">expand_more</span>
+                                </div>
+                                <span class="location-arrow material-symbols-rounded">trending_flat</span>
+                                <div class="request-select-wrap">
+                                    <select id="requestTo" name="requestTo">
+                                        <option value="" selected>도착지 (선택안함)</option>
+                                        <option value="정문">정문</option>
+                                        <option value="도서관">도서관</option>
+                                        <option value="차미리사관">차미리사기념관</option>
+                                        <option value="학생회관">학생회관</option>
+                                        <option value="대강의동">대강의동</option>
+                                        <option value="인문사회관">인문사회관</option>
+                                        <option value="자연관 A동">자연관 A동</option>
+                                        <option value="자연관 B동">자연관 B동</option>
+                                        <option value="예술관">예술관</option>
+                                        <option value="약학관">약학관</option>
+                                        <option value="덕성하나누리관">덕성하나누리관</option>
+                                        <option value="국제관">국제관</option>
+                                        <option value="유아교육관">유아교육관</option>
+                                        <option value="기숙사(가온I관)">기숙사(가온I관)</option>
+                                        <option value="기숙사(가온II관)">기숙사(가온II관)</option>
+                                        <option value="후문">후문</option>
+                                    </select>
+                                    <span class="material-symbols-rounded select-arrow">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="request-field">
+                            <label>
+                                <span class="material-symbols-rounded">timer</span>
+                                예상 소요 시간 <span style="font-size: 13px; color: #888; font-weight: normal; margin-left: 4px;">(선택)</span>
+                            </label>
+                            
+                            <div class="request-input-wrap" style="display: flex; align-items: center; gap: 12px; padding: 8px 16px; width: fit-content; margin: 0;">
+                                <button type="button" id="timeMinusBtn" style="background: white; border: 1px solid #EAE6E1; border-radius: 8px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; color: #666; transition: 0.2s;">
+                                    <span class="material-symbols-rounded" style="font-size: 20px;">remove</span>
+                                </button>
+                                
+                                <div style="font-size: 16px; font-weight: 700; color: #333; width: 50px; text-align: center;">
+                                    <span id="timeDisplay">10</span>분
+                                </div>
+                                <input type="hidden" id="requestTime" name="requestTime" value="10">
+
+                                <button type="button" id="timePlusBtn" style="background: white; border: 1px solid #EAE6E1; border-radius: 8px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; color: #666; transition: 0.2s;">
+                                    <span class="material-symbols-rounded" style="font-size: 20px;">add</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="request-field">
+                            <label for="requestPrice">
+                                <span class="material-symbols-rounded">payments</span> 의뢰 금액 (원)
+                            </label>
+                            
+                            <div style="display: flex; gap: 10px; align-items: stretch;">
+                                <div class="request-input-wrap" style="flex: 1; padding: 0;">
+                                    <input type="number" id="requestPrice" placeholder="예: 3000 (숫자만 입력)" min="0" step="100" required>
+                                </div>
+                                
+                                <button type="button" id="btnAiPrice" class="ai-price-btn">
+                                    <span class="material-symbols-rounded">auto_awesome</span> 추천 받기
+                                </button>
+                            </div>
+                            
+                            <p id="aiPriceHint" style="font-size: 12.5px; color: var(--primary-color); display: none; margin-top: 10px; margin-left: 4px; font-weight: 600; line-height: 1.4;"></p>
+                        </div>
+
+                        <div class="request-field textarea-field">
+                            <label for="requestDetail">
+                                <span class="material-symbols-rounded">description</span> 임무 상세 내용
+                            </label>
+                            <div class="request-textarea-wrap">
+                                <textarea id="requestDetail" name="requestDetail" placeholder="임무의 시간, 장소, 필요한 사항을 구체적으로 적어주세요. (예: 10시 15분까지 인문관 101호 앞)" required></textarea>
+                                <div class="textarea-footer">
+                                    <span class="text-help">최소 10자 이상 작성해주세요.</span>
+                                    <span class="textarea-count">0/1000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <input type="hidden" id="matchingType" name="matchingType" value="normal">
+
+                        <div class="fee-info-container" style="margin-top: 10px; margin-bottom: 15px;">
+                            <div class="fee-info-trigger">
+                                <span class="material-symbols-rounded">info</span>
+                                수수료 상세 안내
+                            </div>
+                            
+                            <div class="fee-tooltip">
+                                <div class="fee-section">
+                                    <h4>일반 매칭 수수료</h4>
+                                    <ul>
+                                        <li><span>전설의 덕꾼 (별점 4.0이상)</span><span class="fee-rate">1%</span></li>
+                                        <li><span>성실 덕꾼 (별점 4.0미만 3.0이상)</span><span class="fee-rate">1.5%</span></li>
+                                        <li><span>단골 덕꾼 (별점 3.0미만 2.5이상)</span><span class="fee-rate">2.5%</span></li>
+                                        <li><span>수습 덕꾼 (별점 2.5미만)</span><span class="fee-rate">3.5%</span></li>
+                                    </ul>
+                                </div>
+                                <div class="fee-section" style="margin-bottom: 0;">
+                                    <h4>빠른 매칭 수수료</h4>
+                                    <ul>
+                                        <li><span>전설의 덕꾼 (별점 4.0이상)</span><span class="fee-rate">2%</span></li>
+                                        <li><span>성실 덕꾼 (별점 4.0미만 3.0이상)</span><span class="fee-rate">3%</span></li>
+                                        <li><span>단골 덕꾼 (별점 3.0미만 2.5이상)</span><span class="fee-rate">4%</span></li>
+                                        <li><span>수습 덕꾼 (별점 2.5미만)</span><span class="fee-rate">5%</span></li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="margin-top: 18px; padding: 12px; background-color: #FFF5F5; border: 1px dashed #E68A8A; border-radius: 10px; text-align: center; word-break: keep-all;">
+                                    <span style="display: flex; align-items: center; justify-content: center; gap: 4px; color: #D32F2F; font-size: 13.5px; font-weight: 800;">
+                                        <span class="material-symbols-rounded" style="font-size: 18px;">campaign</span>
+                                        모든 수수료는 의뢰자가 부담합니다!
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="request-submit-wrap" style="margin-top: 0;">
+                            <button type="button" class="submit-btn btn-normal" id="normalRequestBtn">
+                                <div class="btn-main-text">
+                                    <span class="material-symbols-rounded">handshake</span>
+                                    일반 매칭
+                                </div>
+                                <span class="btn-tip">덕꾼 레벨에 따라 수수료가 차등 부과됩니다.</span>
+                            </button>
+                            
+                            <button type="button" class="submit-btn btn-quick" id="yellowRequestBtn">
+                                <div class="btn-main-text">
+                                    <span class="material-symbols-rounded fill-icon">bolt</span>
+                                    빠른 매칭
+                                </div>
+                                <span class="btn-tip">덕꾼 레벨에 따라 수수료가 차등 부과됩니다.</span>
+                            </button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="js/request.js"></script>
+    <script type="module" src="js/script.js"></script>
+
+    <div id="alertModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span id="alertIcon" class="material-symbols-rounded modal-icon">info</span>
+            <h3 id="alertTitle">알림</h3>
+            <p id="alertMessage">메시지 내용</p>
+            <div class="modal-buttons">
+                <button id="alertConfirmBtn" class="btn-confirm">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span id="confirmIcon" class="material-symbols-rounded modal-icon">help</span>
+            <h3 id="confirmTitle">확인</h3>
+            <p id="confirmMessage">메시지 내용</p>
+            <div class="modal-buttons">
+                <button id="confirmCancelBtn" class="btn-cancel">취소</button>
+                <button id="confirmOkBtn" class="btn-confirm">확인</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

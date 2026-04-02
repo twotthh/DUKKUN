@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>덕꾼-dukkun</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/request.css"> 
+</head>
+<body class="request-body">
+
+    <header id="header">
+        <div class="header-container">
+           <div class="logo">
+                <a href="index.html">
+                    <img src="images/dukkun.png" alt="dukkun logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="home.html">덕꾼 임무 목록</a></li>
+                    <li class="dropdown">
+                        <a href="#">마이 페이지</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="mypage.html">마이 페이지</a></li>
+                            <li><a href="chat_list.html">채팅</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-auth" id="headerAuth">
+                <div id="loggedInState" class="hidden logged-in-state">
+
+                <div class="profile-wrap">
+                    <img id="userProfilePic" src="images/monkey.png" alt="프로필" class="profile-pic-small">
+                    <span class="user-nickname"><span id="userNickname">덕꾼</span>님, 반가워요!</span>
+                </div>
+
+                <div class="noti-wrap">
+                    <button id="notiBtn" class="noti-btn">
+                        <span class="material-symbols-rounded noti-icon">notifications</span>
+                        <span id="notiBadge" class="noti-badge hidden">2</span>
+                    </button>
+                    
+                    <div id="notiDropdown" class="noti-dropdown hidden">
+                        <div class="noti-header">
+                            <span id="unreadCountText">안 읽은 중요알림 0건</span>
+                            <span class="material-symbols-rounded noti-info-icon" title="알림 키워드 설정은 마이페이지에서 수정 가능합니다.">info</span>
+                        </div>
+                        <div class="noti-list" id="notiList">
+                            <div class="noti-empty">도착한 알림이 없습니다.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="request-main-page">
+        <div class="request-bg-gradients">
+            <div class="gradient gradient-1"></div>
+            <div class="gradient gradient-2"></div>
+        </div>
+
+        <section class="request-section">
+            <div class="request-paper-frame">
+                <div class="paper-top-deco"></div>
+                <div class="request-inner-content">
+                    
+                    <div class="request-header-block">
+                        <span class="request-sub-title">EDIT MISSION</span>
+                        <h1 class="request-page-title">의뢰 수정하기</h1>
+                        <p class="request-desc">작성했던 심부름 내용을 수정합니다.</p>
+                    </div>
+
+                    <form id="editForm">
+                        <div class="request-field">
+                            <label for="editTitle"><span class="material-symbols-rounded">edit_square</span> 임무 제목</label>
+                            <div class="request-input-wrap">
+                                <input type="text" id="editTitle" placeholder="어떤 도움이 필요하신가요? (예: 도서관 책 반납 부탁드려요)" maxlength="60">
+                                <span class="input-count" id="titleCount">0/60</span>
+                            </div>
+                        </div>
+
+                        <div class="multi-fields">
+                            <div class="request-field">
+                                <label for="editCategory"><span class="material-symbols-rounded">category</span> 카테고리</label>
+                                <div class="request-select-wrap">
+                                    <select id="editCategory">
+                                        <option value="" disabled>분야를 선택해주세요</option>
+                                        <option value="학습">학습 도움</option>
+                                        <option value="생활">생활 편의</option>
+                                        <option value="재능">재능 공유</option>
+                                        <option value="기타">기타 임무</option>
+                                    </select>
+                                    <span class="material-symbols-rounded select-arrow">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="request-field">
+                            <label><span class="material-symbols-rounded">map</span> 이동 경로</label>
+                            <div class="location-input-group">
+                                <div class="request-select-wrap">
+                                    <select id="editFrom">
+                                        <option value="" selected>출발지 (선택안함)</option>
+                                        <option value="정문">정문</option>
+                                        <option value="도서관">도서관</option>
+                                        <option value="차미리사관">차미리사기념관</option>
+                                        <option value="학생회관">학생회관</option>
+                                        <option value="대강의동">대강의동</option>
+                                        <option value="인문사회관">인문사회관</option>
+                                        <option value="자연관 A동">자연관 A동</option>
+                                        <option value="자연관 B동">자연관 B동</option>
+                                        <option value="예술관">예술관</option>
+                                        <option value="약학관">약학관</option>
+                                        <option value="덕성하나누리관">덕성하나누리관</option>
+                                        <option value="국제관">국제관</option>
+                                        <option value="유아교육관">유아교육관</option>
+                                        <option value="기숙사(가온I관)">기숙사(가온I관)</option>
+                                        <option value="기숙사(가온II관)">기숙사(가온II관)</option>
+                                        <option value="후문">후문</option>
+                                    </select>
+                                    <span class="material-symbols-rounded select-arrow">expand_more</span>
+                                </div>
+                                <span class="material-symbols-rounded location-arrow">arrow_right_alt</span>
+                                <div class="request-select-wrap">
+                                    <select id="editTo">
+                                        <option value="" selected>도착지 (선택안함)</option>
+                                        <option value="정문">정문</option>
+                                        <option value="도서관">도서관</option>
+                                        <option value="차미리사관">차미리사기념관</option>
+                                        <option value="학생회관">학생회관</option>
+                                        <option value="대강의동">대강의동</option>
+                                        <option value="인문사회관">인문사회관</option>
+                                        <option value="자연관 A동">자연관 A동</option>
+                                        <option value="자연관 B동">자연관 B동</option>
+                                        <option value="예술관">예술관</option>
+                                        <option value="약학관">약학관</option>
+                                        <option value="덕성하나누리관">덕성하나누리관</option>
+                                        <option value="국제관">국제관</option>
+                                        <option value="유아교육관">유아교육관</option>
+                                        <option value="기숙사(가온I관)">기숙사(가온I관)</option>
+                                        <option value="기숙사(가온II관)">기숙사(가온II관)</option>
+                                        <option value="후문">후문</option>
+                                    </select>
+                                    <span class="material-symbols-rounded select-arrow">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="request-field">
+                            <label>
+                                <span class="material-symbols-rounded">timer</span>
+                                예상 소요 시간 <span style="font-size: 13px; color: #888; font-weight: normal; margin-left: 4px;">(선택)</span>
+                            </label>
+                            <div class="request-input-wrap" style="display: flex; align-items: center; gap: 12px; padding: 8px 16px; width: fit-content; margin: 0;">
+                                <button type="button" id="timeMinusBtn" style="background: white; border: 1px solid #EAE6E1; border-radius: 8px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; color: #666; transition: 0.2s;">
+                                    <span class="material-symbols-rounded" style="font-size: 20px;">remove</span>
+                                </button>
+                                
+                                <div style="font-size: 16px; font-weight: 700; color: #333; width: 50px; text-align: center;">
+                                    <span id="timeDisplay">10</span>분
+                                </div>
+                                <input type="hidden" id="editTime" value="10">
+
+                                <button type="button" id="timePlusBtn" style="background: white; border: 1px solid #EAE6E1; border-radius: 8px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; color: #666; transition: 0.2s;">
+                                    <span class="material-symbols-rounded" style="font-size: 20px;">add</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="request-field">
+                            <label for="editPrice"><span class="material-symbols-rounded">payments</span> 의뢰 금액 (원)</label>
+                            
+                            <div class="request-input-wrap" style="display: flex; gap: 10px; align-items: center; background: none; border: none; padding: 0;">
+                                <input type="number" id="editPrice" placeholder="예: 3000 (숫자만 입력)" min="0" step="100" required style="flex: 1; padding: 14px 20px; background-color: #F8F6F2; border: 1px solid transparent; border-radius: 12px; font-size: 15px; color: #333; outline: none;">
+                                
+                                <button type="button" id="btnAiPriceEdit" class="ai-price-btn" style="flex-shrink: 0; height: 50px; padding: 0 16px; border-radius: 12px;">
+                                    <span class="material-symbols-rounded" style="font-size: 18px;">auto_awesome</span> 추천 받기
+                                </button>
+                            </div>
+                            
+                            <p id="aiPriceHintEdit" style="font-size: 12.5px; color: var(--primary-color); display: none; margin-top: 10px; margin-left: 4px; font-weight: 600; line-height: 1.4;"></p>
+                        </div>
+
+                        <div class="request-field textarea-field">
+                            <label for="editDetail"><span class="material-symbols-rounded">description</span> 임무 상세 내용</label>
+                            <div class="request-textarea-wrap">
+                                <textarea id="editDetail" placeholder="임무의 시간, 장소, 필요한 사항을 구체적으로 적어주세요." maxlength="1000"></textarea>
+                                <div class="textarea-footer">
+                                    <span class="text-help">최소 10자 이상 입력해주세요.</span>
+                                    <span class="textarea-count" id="detailCount">0/1000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="request-submit-wrap" style="justify-content: center;">
+                            <button type="button" id="cancelBtn" class="submit-btn btn-normal" style="max-width: 200px;">
+                                <span class="btn-main-text">취소하기</span>
+                            </button>
+                            <button type="submit" id="saveBtn" class="submit-btn btn-quick" style="max-width: 200px; background-color: var(--primary-color); box-shadow: none;">
+                                <span class="btn-main-text"><span class="material-symbols-rounded fill-icon">save</span> 수정 완료</span>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="alertModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span id="alertIcon" class="material-symbols-rounded modal-icon" style="color: var(--primary-color);">info</span>
+            <h3 id="alertTitle">알림</h3>
+            <p id="alertMessage">메시지 내용</p>
+            <div class="modal-buttons" style="justify-content: center;">
+                <button id="alertConfirmBtn" class="btn-confirm" style="width: 100%;">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/edit.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>덕꾼-dukkun</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/content.css">
+</head>
+<body class="content-body">
+
+    <header id="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/dukkun.png" alt="dukkun logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">홈</a></li>
+                    <li><a href="home.html" class="auth-required">덕꾼 임무 목록</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="auth-required">마이 페이지</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="mypage.html" class="auth-required">마이 페이지</a></li>
+                            <li><a href="chat_list.html" class="auth-required">채팅</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-auth" id="headerAuth">
+                <div id="loggedOutState">
+                    <button class="btn-login" onclick="location.href='login.html'">로그인</button>
+                    <button class="btn-signup" onclick="location.href='signup.html'">회원가입</button>
+                </div>
+                <div id="loggedInState" class="hidden logged-in-state">
+                <div class="profile-wrap">
+                    <img id="userProfilePic" src="images/monkey.png" alt="프로필" class="profile-pic-small">
+                    <span class="user-nickname"><span id="userNickname">덕꾼</span>님, 반가워요!</span>
+                </div>
+
+                <div class="noti-wrap">
+                    <button id="notiBtn" class="noti-btn">
+                        <span class="material-symbols-rounded noti-icon">notifications</span>
+                        <span id="notiBadge" class="noti-badge hidden">2</span>
+                    </button>
+                    
+                    <div id="notiDropdown" class="noti-dropdown hidden">
+                        <div class="noti-header">
+                            <span id="unreadCountText">안 읽은 중요알림 0건</span>
+                            <span class="material-symbols-rounded noti-info-icon" title="알림 키워드 설정은 마이페이지에서 수정 가능합니다.">info</span>
+                        </div>
+                        <div class="noti-list" id="notiList">
+                            <div class="noti-empty">도착한 알림이 없습니다.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <main class="content-main-page">
+        <section class="content-section">
+            <div class="content-inner">
+                
+                <div class="content-detail-box">
+                    <div class="content-detail-top" style="display: flex; flex-direction: column; gap: 16px;">
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; width: 100%;">
+                            <h1 id="detailTitle" style="margin: 0; line-height: 1.4; flex: 1; word-break: keep-all; font-size: 26px;">제목을 불러오는 중...</h1>
+                            
+                            <div class="content-meta-info" style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0;">
+                                <span id="detailDate" style="color: #999; font-size: 13px;">날짜</span>
+                                <div class="writer-profile-box" style="display: flex; align-items: center; gap: 8px; margin-top: 2px;">
+                                    <div id="author-avatar-wrap" style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background-color: #F8F6F2; overflow: hidden; flex-shrink: 0; border: 1px solid #f0f0f0;">
+                                        <img id="detailProfilePic" src="images/people.png" alt="작성자 프로필" style="width: 90%; height: 90%; object-fit: contain; z-index: 1;">
+                                        <span id="author-hat" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center;"></span>
+                                    </div>
+                                    <span id="detailWriter" style="font-size: 14px; font-weight: 600; color: #555;">작성자</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content-location-row" id="detailLocationRow" style="margin-top: 4px;"></div>
+                        
+                        <div class="content-price" id="detailPrice" style="margin-top: 4px; font-size: 24px;">가격</div>
+                    </div>
+
+                    <div class="content-desc-wrap">
+                        <p class="content-desc" id="detailDesc">
+                            내용을 불러오는 중입니다...
+                        </p>
+                    </div>
+
+                    <div class="content-apply-wrap">
+                        <button class="content-apply-btn" id="applyBtn" type="button" style="display: none;">덕꾼하기</button>
+                        
+                        <div id="authorButtons" style="display: none; gap: 10px; margin-top: 20px; justify-content: center;">
+                            <button id="editBtn" class="btn-edit">수정하기</button>
+                            <button id="cancelPostBtn" class="btn-delete">취소하기</button>
+                        </div>
+
+                        <div id="workingButtonsWrap" style="display: none; flex-direction: column; align-items: center; margin-top: 20px; gap: 10px;">
+                            <button id="completeBtn" class="btn-complete" style="background-color: #A68B6A; color: white; border: none; padding: 14px 32px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; max-width: 320px;">
+                                <span class="material-symbols-rounded" style="vertical-align: bottom; font-size: 20px; margin-right: 4px;">task_alt</span> 임무 완료 및 정산
+                            </button>
+                            
+                            <button id="giveupBtn" style="display: none; background-color: transparent; color: #E68A8A; border: none; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: underline;">
+                                임무 수행 포기하기
+                            </button>
+                        </div>
+                    </div>
+                </div> 
+                
+                <div class="content-related-list" id="relatedList"></div>
+
+                <div class="content-pagination">
+                    <button class="page-btn prev" id="relatedPrevBtn" type="button">← 이전</button>
+                    <span class="page-number" id="relatedPageNumber">1/1</span>
+                    <button class="page-btn next" id="relatedNextBtn" type="button">다음 →</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="confirmModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="material-symbols-rounded modal-icon" style="color: var(--primary-color);">help</span>
+            <h3>덕꾼이 되어볼까요?</h3>
+            <p>수락하시면 이 심부름을 수행하게 돼요.<br>진행할까요?</p>
+            <div class="modal-buttons">
+                <button id="cancelConfirmBtn" class="btn-cancel">취소</button>
+                <button id="acceptConfirmBtn" class="btn-confirm">수락하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="alertModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="material-symbols-rounded modal-icon" style="color: var(--primary-color);">check_circle</span>
+            <h3>매칭이 완료되었습니다!</h3>
+            <p>지금 바로 덕꾼으로서<br>임무 수행을 시작해볼까요?</p>
+            <div class="modal-buttons" style="justify-content: center;">
+                <button id="closeAlertBtn" class="btn-confirm" style="width: 100%;">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cancelModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="material-symbols-rounded modal-icon" style="color: #E68A8A;">warning</span>
+            <h3>의뢰를 취소하시겠습니까?</h3>
+            <p>정말 이 의뢰를 삭제하고 취소하시겠습니까?</p>
+            <div class="modal-buttons">
+                <button id="closeCancelModalBtn" class="btn-cancel">닫기</button>
+                <button id="confirmCancelBtn" class="btn-confirm" style="background-color: #E68A8A; border-color: #E68A8A;">취소 진행</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="giveupModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="material-symbols-rounded modal-icon" style="color: #E68A8A;">warning</span>
+            <h3>정말 수행을 포기하시겠습니까?</h3>
+            <p>임무 포기 시 패널티로 <strong>의뢰 금액의 3%가 등록된 결제 수단으로 별도 청구</strong>됩니다.<br>그래도 포기하시겠습니까?</p>
+            <div class="modal-buttons">
+                <button id="closeGiveupModalBtn" class="btn-cancel">닫기</button>
+                <button id="confirmGiveupBtn" class="btn-confirm" style="background-color: #E68A8A; border-color: #E68A8A;">포기하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="completeConfirmModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="material-symbols-rounded modal-icon" style="color: var(--primary-color);">task_alt</span>
+            <h3>임무 완료 처리</h3>
+            <p>임무가 무사히 완료되었나요?<br>확인 시 덕꾼에게 보상 포인트가 지급됩니다.</p>
+            <div class="modal-buttons">
+                <button id="cancelCompleteBtn" class="btn-cancel">취소</button>
+                <button id="acceptCompleteBtn" class="btn-confirm">완료하기</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="receiptAlertModal" class="modal-overlay hidden">
+        <div class="receipt-modal">
+            <div class="receipt-header">
+                <span class="material-symbols-rounded">receipt_long</span>
+                <h3>정산 영수증</h3>
+            </div>
+            <div class="receipt-body">
+                <p class="receipt-desc">임무를 성공적으로 마쳤습니다! 🎉</p>
+                
+                <div class="receipt-line">
+                    <span class="r-label">의뢰 금액 (100%)</span>
+                    <span class="r-val" id="receiptMainPrice">0원</span>
+                </div>
+                <div class="receipt-hint">↳ 등록하신 계좌로 입금 대기 중입니다.</div>
+                
+                <div class="receipt-line receipt-plus">
+                    <span class="r-label">덕꾼 수고 보상</span>
+                    <span class="r-val" id="receiptBonusPrice">+ 0P</span>
+                </div>
+                <div class="receipt-hint">↳ 내 덕꾼 포인트 지갑으로 즉시 지급 완료!</div>
+                
+                <div class="receipt-divider"></div>
+            </div>
+            <div class="receipt-footer">
+                <button id="closeReceiptBtn" class="btn-confirm" style="width: 100%;">확인 및 닫기</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="completeAlertModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="material-symbols-rounded modal-icon" style="color: var(--primary-color);">celebration</span>
+            <h3>임무 완료 및 정산 성공!</h3>
+            <p>수고한 덕꾼에게 별점을 남기고<br><strong>완료 보상 50P</strong>를 받아보세요!</p>
+            <div class="modal-buttons" style="justify-content: center;">
+                <button id="closeCompleteAlertBtn" class="btn-confirm" style="width: 100%;">리뷰 쓰러가기</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="halfCompleteModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="material-symbols-rounded modal-icon" style="color: var(--primary-color);">hourglass_top</span>
+            <h3>확인 완료!</h3>
+            <p>상대방이 완료를 누를 때까지 기다려주세요.<br><span style="font-size:13.5px; color:#888;">(상대방 미확인 시 48시간 뒤 자동 정산됩니다)</span></p>
+            <div class="modal-buttons" style="justify-content: center;">
+                <button id="closeHalfCompleteBtn" class="btn-confirm" style="width: 100%;">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/content.js"></script>
+</body>
+</html>
