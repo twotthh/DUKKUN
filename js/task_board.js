@@ -11,8 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let allTasks = []; 
     let currentSort = "최신순";
     let currentPlace = "전체";
+    
     let currentPage = 1;
-    const itemsPerPage = isListPage ? 8 : 5;
+    const itemsPerPage = isListPage ? 8 : 5; 
 
     function applyFilters() {
         let filteredTasks = allTasks.filter(task => {
@@ -77,7 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
         onSnapshot(q, (querySnapshot) => {
             allTasks = [];
             querySnapshot.forEach((doc) => {
-                allTasks.push({ id: doc.id, ...doc.data() }); 
+                const data = doc.data();
+                if (data.status !== "cancelled") {
+                    allTasks.push({ id: doc.id, ...data }); 
+                }
             });
             triggerRender(); 
         });
@@ -98,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return [...tasks].sort((a, b) => {
             const timeA = a.createdAt ? a.createdAt.toDate().getTime() : 0;
             const timeB = b.createdAt ? b.createdAt.toDate().getTime() : 0;
+
             const isAPinned = a.matchType === "yellow" && a.status === "open" && (now - timeA < TEN_MIN_MS);
             const isBPinned = b.matchType === "yellow" && b.status === "open" && (now - timeB < TEN_MIN_MS);
 
@@ -134,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const isWorking = data.status === "working" || data.status === "paid";
             const isCompleted = data.status === "completed";
-            const isCancelled = data.status === "cancelled";
             
             let btnText = `${btnIcon}내가 할래요!`;
             let workingStyle = "";
@@ -145,12 +149,10 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (isCompleted) {
                 btnText = "완료됨";
                 workingStyle = `style="background-color: #e0e0e0; color: #888888; border-color: #e0e0e0; box-shadow: none; cursor: default;"`;
-            } else if (isCancelled) {
-                btnText = "취소됨";
-                workingStyle = `style="background-color: #f5f5f5; color: #aaaaaa; border-color: #f5f5f5; box-shadow: none; cursor: default;"`;
-            }
+            } 
 
             const priceText = data.price ? `${data.price.toLocaleString()}원` : "금액 협의";
+
             const fromLoc = data.departure || "미지정";
             const toLoc = data.destination || "미지정";
             const reqTime = data.requestTime || null; 
