@@ -1,0 +1,312 @@
+.home-body {
+    background-color: #fdfbf9; 
+}
+
+.home-main-page {
+    background-color: #fdfbf9;
+    min-height: 100vh;
+    padding-top: 120px;
+}
+
+.home-intro-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 30px 44px 45px;
+    text-align: left;
+}
+
+.home-intro-inner h1 {
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.35;
+    color: #111111;
+    margin-bottom: 18px;
+    letter-spacing: -1px;
+}
+
+.home-intro-inner p {
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: #222222;
+    margin-bottom: 42px;
+    letter-spacing: -0.4px;
+}
+
+.home-intro-buttons {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.home-main-btn {
+    min-width: 196px;
+    height: 58px;
+    padding: 0 28px;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.home-main-btn.primary {
+    background-color: var(--primary-color, #A68B6A);
+    color: #ffffff;
+    border: 1px solid var(--primary-color, #A68B6A);
+}
+
+.home-main-btn.primary:hover {
+    background-color: #8E7558; 
+    border-color: #8E7558;
+}
+
+.home-main-btn.secondary {
+    background-color: #ffffff;
+    color: var(--primary-color, #A68B6A);
+    border: 1px solid #e0d8d0; 
+}
+
+.home-main-btn.secondary:hover {
+    background-color: #f8f6f3;
+}
+
+.home-mission-section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px 140px;
+    text-align: left;
+}
+
+.home-section-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 38px;
+    padding: 0 16px;
+}
+
+.home-section-title-row h2 {
+    font-size: 25px;
+    font-weight: 700;
+    color: #111111;
+    margin: 0;
+}
+
+.home-view-all {
+    font-size: 16px;
+    font-weight: 500;
+    color: #666666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.home-view-all span {
+    font-size: 24px;
+    line-height: 1;
+    margin-top: -2px;
+}
+
+.home-mission-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.home-mission-card {
+    background-color: #ffffff; 
+    border: 1px solid #e5dfd7; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border-radius: 24px;
+    padding: 22px 28px;
+    margin: 0; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-mission-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(166, 139, 106, 0.15);
+}
+
+.home-mission-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.top-badges {
+    display: flex;
+    gap: 8px;
+    align-items: center; 
+    line-height: 1; 
+}
+
+.home-category {
+    display: inline-flex;
+    align-items: center;
+    height: 28px; 
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-color, #A68B6A);
+    padding: 0 2px;
+    margin: 0;
+    border-bottom: 2px solid var(--primary-color, #A68B6A);
+}
+
+.home-time {
+    font-size: 14px;
+    color: #A68B6A;
+    font-weight: 500;
+}
+
+.home-mission-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 26px;
+    letter-spacing: -0.5px;
+}
+
+.home-mission-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.bottom-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 12px; 
+}
+
+.home-location {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #A68B6A;
+    font-size: 15px;
+    font-weight: 500;
+    flex-wrap: wrap;
+}
+
+.home-location .material-symbols-rounded {
+    color: var(--primary-color, #A68B6A);
+}
+
+.home-dot-separator {
+    color: #cccccc;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.home-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-color, #A68B6A); 
+    margin: 0;
+}
+
+.home-card-btn {
+    min-width: 140px;
+    height: 42px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color, #A68B6A);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.home-card-btn:hover {
+    background-color: #8E7558;
+}
+
+.home-body #header {
+    background-color: transparent;
+}
+
+:root {
+    --quick-color: #FFC107;
+}
+
+.home-mission-card.quick-match {
+    border: 1px solid var(--quick-color, #FFC107); 
+    background-color: #fdfbef; 
+    box-shadow: 0 6px 20px rgba(247, 217, 98, 0.1); 
+}
+
+.quick-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px; 
+    background-color: var(--quick-color, #FFC107); 
+    color: #ffffff; 
+    padding: 0 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1;
+}
+
+.quick-badge .material-symbols-rounded {
+    font-size: 16px;
+    margin-right: 2px;
+}
+
+.home-mission-card.quick-match h3 {
+    font-weight: 600;
+    color: #111;
+}
+
+.home-mission-card.quick-match .home-price {
+    color: var(--quick-color, #FFC107);
+}
+
+.home-card-btn.quick-btn {
+    background-color: var(--quick-color, #FFC107); 
+    color: #ffffff; 
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+}
+
+.home-card-btn.quick-btn:hover {
+    background-color: #e6c857; 
+}
+
+.home-card-btn.quick-btn .material-symbols-rounded {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+    .home-intro-inner h1 { font-size: 30px; }
+    .home-intro-inner p { font-size: 22px; }
+    .home-mission-card h3 { font-size: 19px; }
+    .home-card-btn { min-width: 120px; font-size: 14px; }
+}
+
+@media (max-width: 768px) {
+    .home-main-page { padding-top: 100px; }
+    .home-intro-section { padding: 20px 20px 30px; }
+    .home-intro-inner h1 { font-size: 25px; }
+    .home-intro-inner p { font-size: 17px; margin-bottom: 28px; }
+    .home-intro-buttons { flex-direction: column; align-items: stretch; }
+    .home-main-btn { width: 100%; min-width: auto; font-size: 16px; }
+    .home-mission-section { padding: 0 20px 80px; }
+    .home-section-title-row { padding: 0; }
+    .home-section-title-row h2 { font-size: 21px; }
+    .home-mission-card { padding: 20px; border-radius: 20px; }
+    .home-mission-card h3 { font-size: 18px; margin-bottom: 20px; }
+    .home-mission-bottom { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .home-card-btn { width: 100%; min-width: auto; height: 46px; }
+}
