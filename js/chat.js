@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     taskAuthorUid = taskData.authorUid;
                     
                     postTitleEl.textContent = taskData.title;
-
+                    
                     if(postPriceEl) {
                         postPriceEl.textContent = taskData.price ? `${taskData.price.toLocaleString()}원` : "가격 협의";
                     }
